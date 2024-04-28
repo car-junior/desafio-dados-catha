@@ -9,6 +9,7 @@ from scripts.utils.monta_dados import MontaDados
 dados_2010_2012 = MontaDados.via_arquivos_csv(caminho_raiz=DiretorioLerArquivo.REGISTRO_CLIMATICOS_2010_2012)
 FormataDados.renomear_colunas_dados_2010_2018(dados_2010_2012)
 FormataDados.definir_data_para_ano_mes(dados_2010_2012)
+FormataDados.substituir_valores(dados_2010_2012)
 
 GeradorArquivo.gerar_csv_periodo(
     AnalisaDados.calcular_media(dados_2010_2012),
