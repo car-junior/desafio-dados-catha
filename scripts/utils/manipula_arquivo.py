@@ -4,9 +4,9 @@ from enum import Enum
 from pandas import DataFrame
 
 DADOS_POR_PERIODO = 'dados_por_periodo'
-DIRETORIO_RAIZ_PROJETO = os.path.dirname(os.getcwd())
-DIRETORIO_REGISTRO_CLIMATICOS = "\\arquivos_csv\\registro_climaticos"
-DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES = "\\arquivos_csv\\registro_acidentes\\base_de_acidentes.xlsx"
+DIRETORIO_RAIZ_PROJETO = os.path.dirname(os.path.dirname(os.getcwd()))
+DIRETORIO_REGISTRO_CLIMATICOS = "arquivos_entrada\\registros_climaticos"
+DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES = "arquivos_entrada\\registros_acidentes\\base_de_acidentes.xlsx"
 
 
 class DiretorioLerArquivo(Enum):
