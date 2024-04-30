@@ -6,7 +6,7 @@ from scripts.utils.manipula_arquivo import GeradorArquivo
 from scripts.utils.manipula_arquivo import TipoArquivoPeriodo
 from scripts.utils.monta_dados import MontaDados
 
-dados_2013_2015 = MontaDados.via_arquivos_csv(caminho_raiz=DiretorioLerArquivo.REGISTRO_CLIMATICOS_2013_2015)
+dados_2013_2015 = MontaDados.via_arquivos_csv_clima(caminho_raiz=DiretorioLerArquivo.REGISTRO_CLIMATICOS_2013_2015)
 FormataDados.renomear_colunas_dados_2010_2018(dados_2013_2015)
 FormataDados.definir_data_para_ano_mes(dados_2013_2015)
 
@@ -14,6 +14,12 @@ GeradorArquivo.gerar_csv_periodo(
     AnalisaDados.calcular_media(dados_2013_2015),
     TipoArquivoPeriodo.DADOS_2013_2015_CSV,
     DiretorioArquivoPeriodo.MEDIA
+)
+
+GeradorArquivo.gerar_csv_periodo(
+    AnalisaDados.calcular_desvio_padrao(dados_2013_2015),
+    TipoArquivoPeriodo.DADOS_2013_2015_CSV,
+    DiretorioArquivoPeriodo.DESVIO_PADRAO
 )
 
 del dados_2013_2015

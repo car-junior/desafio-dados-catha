@@ -21,7 +21,7 @@ def _obter_estado(caminho_arquivo):
         return estado
 
 
-def _processar_csv(arquivo, separator, skip_rows, encoding):
+def _processar_csv_clima(arquivo, separator, skip_rows, encoding):
     try:
         estado = _obter_estado(arquivo)
         dados_csv = pandas.read_csv(arquivo, sep=separator, skiprows=skip_rows, encoding=encoding, decimal=',')
@@ -33,18 +33,33 @@ def _processar_csv(arquivo, separator, skip_rows, encoding):
         print(f"Erro ao processar o arquivo {arquivo}: {exception}")
 
 
+def _processar_csv_gerado(arquivo):
+    try:
+        return pandas.read_csv(arquivo, sep=";", encoding='utf-8', decimal=',')
+    except Exception as exception:
+        print(f"Erro ao processar o arquivo {arquivo}: {exception}")
+
+
+def _processar_excel_acidentes(arquivo):
+    try:
+        return pandas.read_excel(arquivo)
+    except Exception as exception:
+        print(f"Erro ao processar o arquivo {arquivo}: {exception}")
+
+
 class MontaDados:
     SEPARADOR = ';'
     PULAR_LINHAS = 8
     CODIFICACAO = 'cp1252'
 
     @staticmethod
-    def via_arquivos_csv(caminho_raiz: DiretorioLerArquivo,
-                         separador=SEPARADOR, pular_linhas=PULAR_LINHAS,
-                         codificacao=CODIFICACAO):
+    def via_arquivos_csv_clima(caminho_raiz: DiretorioLerArquivo,
+                               separador=SEPARADOR, pular_linhas=PULAR_LINHAS,
+                               codificacao=CODIFICACAO):
         arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "**/*.csv"))
 
-        conjunto_dados = [_processar_csv(arquivo, separador, pular_linhas, codificacao) for arquivo in arquivos_csv]
+        conjunto_dados = [_processar_csv_clima(arquivo, separador, pular_linhas, codificacao) for arquivo in
+                          arquivos_csv]
 
         if conjunto_dados:
             conjunto_dados = pandas.concat(conjunto_dados, ignore_index=True)
@@ -54,14 +69,16 @@ class MontaDados:
             print(f"Não foi encontrado nenhum arquivo csv em {caminho_raiz.value}")
 
     @staticmethod
-    def via_arquivos_csv_gerados(caminho_raiz: DiretorioArquivoPeriodo,
-                                 separador=SEPARADOR, pular_linhas=PULAR_LINHAS,
-                                 codificacao=CODIFICACAO):
+    def via_arquivos_csv_gerados(caminho_raiz: DiretorioArquivoPeriodo):
         arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "*.csv"))
 
-        conjunto_dados = [_processar_csv(arquivo, separador, pular_linhas, codificacao) for arquivo in arquivos_csv]
+        conjunto_dados = [_processar_csv_gerado(arquivo) for arquivo in arquivos_csv]
 
         if conjunto_dados:
             return pandas.concat(conjunto_dados, ignore_index=False)
         else:
             print(f"Não foi encontrado nenhum arquivo csv em {caminho_raiz.value}")
+
+    @staticmethod
+    def via_arquivo_excel_acidentes(caminho_raiz: DiretorioLerArquivo):
+        return _processar_excel_acidentes(f"{caminho_raiz.value}")

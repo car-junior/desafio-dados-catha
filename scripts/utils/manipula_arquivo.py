@@ -8,6 +8,7 @@ DIRETORIO_RAIZ_PROJETO = os.path.dirname(os.getcwd())
 
 
 class DiretorioLerArquivo(Enum):
+    REGISTRO_ACIDENTES_2010_2021 = "C:\\Users\\Carlos Júnior\\Documents\\desafio-dados-catha\\acidentes\\base_de_acidentes.xlsx"
     REGISTRO_CLIMATICOS_2010_2012 = f"{DIRETORIO_RAIZ_PROJETO}\\registros_climaticos\\2010_2012"
     REGISTRO_CLIMATICOS_2013_2015 = f"{DIRETORIO_RAIZ_PROJETO}\\registros_climaticos\\2013_2015"
     REGISTRO_CLIMATICOS_2016_2018 = f"{DIRETORIO_RAIZ_PROJETO}\\registros_climaticos\\2016_2018"
@@ -15,7 +16,8 @@ class DiretorioLerArquivo(Enum):
 
 
 class TipoArquivo(Enum):
-    DADOS_MEDIA_2010_2021_CSV = 'dados_media_2010_2021.csv'
+    MEDIA_DADOS_2010_2021_CSV = 'media_dados_2010_2021.csv'
+    DESVIO_PADRAO_DADOS_2010_2021_CSV = 'desvio_padrao_dados_2010_2021.csv'
 
 
 class DiretorioGeraArquivo(Enum):
@@ -44,9 +46,9 @@ class GeradorArquivo:
     @staticmethod
     def gerar_csv_periodo(dados: DataFrame, tipo_arquivo: TipoArquivoPeriodo, diretorio: DiretorioArquivoPeriodo):
         gerar_diretorio(diretorio)
-        dados.to_csv(f"{diretorio.value}\\{tipo_arquivo.value}", index=False, decimal=',', sep=';')
+        dados.to_csv(f"{diretorio.value}\\{tipo_arquivo.value}", index=False, decimal=',', sep=';', encoding='utf-8')
 
     @staticmethod
     def gerar_csv(dados: DataFrame, tipo_arquivo: TipoArquivo, diretorio: DiretorioGeraArquivo):
         gerar_diretorio(diretorio)
-        dados.to_csv(f"{diretorio.value}\\{tipo_arquivo.value}", index=False, decimal=',', sep=';')
+        dados.to_csv(f"{diretorio.value}\\{tipo_arquivo.value}", index=False, decimal=',', sep=';', encoding='utf-8')
