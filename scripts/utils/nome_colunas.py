@@ -63,7 +63,6 @@ class RegistroAcidente(Enum):
         return [
             RegistroAcidente.COLUNA_ESTADO.value,
             RegistroAcidente.COLUNA_OCORRENCIA_DIA.value,
-            RegistroAcidente.COLUNA_AERONAVE_MATRICULA.value,
             RegistroAcidente.COLUNA_OCORRENCIA_CLASSIFICACAO.value
             #     Adicionar hora ?
         ]
