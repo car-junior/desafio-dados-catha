@@ -20,6 +20,7 @@ class DiretorioLerArquivo(Enum):
 class TipoArquivo(Enum):
     MEDIA_DADOS_2010_2021_CSV = 'media_dados_2010_2021.csv'
     DESVIO_PADRAO_DADOS_2010_2021_CSV = 'desvio_padrao_dados_2010_2021.csv'
+    CONTAGEM_REGISTROS_ACIDENTES_2010_2021_CSV = 'contagem_registros_acidentes_2010_2021.csv'
 
 
 class DiretorioGeraArquivo(Enum):

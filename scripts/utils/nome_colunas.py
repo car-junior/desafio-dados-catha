@@ -6,6 +6,10 @@ class RegistroClimatico(Enum):
     COLUNA_HORA = "HORA"
     COLUNA_ESTADO = "ESTADO"
 
+    @staticmethod
+    def agrupa_por():
+        return [RegistroClimatico.COLUNA_DATA.value, RegistroClimatico.COLUNA_ESTADO.value]
+
 
 class RegistroAcidente(Enum):
     # COLUNA_OCORRENCIA_HORA = "ocorrencia_hora" #TODO: Usar coluna hora como groupby tambem ? para ser mais preciso
@@ -46,6 +50,16 @@ class RegistroAcidente(Enum):
 
     @staticmethod
     def obter_duplicadas():
+        return [
+            RegistroAcidente.COLUNA_ESTADO.value,
+            RegistroAcidente.COLUNA_OCORRENCIA_DIA.value,
+            RegistroAcidente.COLUNA_AERONAVE_MATRICULA.value,
+            RegistroAcidente.COLUNA_OCORRENCIA_CLASSIFICACAO.value
+            #     Adicionar hora ?
+        ]
+
+    @staticmethod
+    def agrupa_por():
         return [
             RegistroAcidente.COLUNA_ESTADO.value,
             RegistroAcidente.COLUNA_OCORRENCIA_DIA.value,
