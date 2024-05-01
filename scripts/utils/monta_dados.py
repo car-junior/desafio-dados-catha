@@ -55,10 +55,10 @@ class MontaDados:
     CODIFICACAO = 'cp1252'
 
     @staticmethod
-    def via_arquivos_csv_clima(caminho_raiz: DiretorioLerArquivo,
+    def via_arquivos_csv_clima(caminho_raiz: DiretorioLerArquivo | str,
                                separador=SEPARADOR, pular_linhas=PULAR_LINHAS,
                                codificacao=CODIFICACAO):
-        arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "**/*.csv"))
+        arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz}", "**/*.csv"))
 
         conjunto_dados = [_processar_csv_clima(arquivo, separador, pular_linhas, codificacao) for arquivo in
                           arquivos_csv]

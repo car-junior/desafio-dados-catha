@@ -6,7 +6,7 @@ from scripts.utils.manipula_arquivo import GeradorArquivo
 from scripts.utils.manipula_arquivo import TipoArquivoPeriodo
 from scripts.utils.monta_dados import MontaDados
 
-dados_2019_2021 = MontaDados.via_arquivos_csv_clima(caminho_raiz=DiretorioLerArquivo.REGISTRO_CLIMATICOS_2019_2021)
+dados_2019_2021 = MontaDados.via_arquivos_csv_clima(caminho_raiz="C:\\Users\\carlo\\Downloads\\desafio-dados-catha\\arquivos_entrada\\registros_climaticos\\2019_2021")
 FormataDados.renomear_colunas_dados_2019_2021(dados_2019_2021)
 FormataDados.definir_data_para_ano_mes(dados_2019_2021)
 
