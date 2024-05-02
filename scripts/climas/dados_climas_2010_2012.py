@@ -36,7 +36,3 @@ GeradorArquivo.gerar_csv_periodo(
 )
 
 del dados_2010_2012
-# AnalisaDados.calcular_desvio_padrao(dados_2010_2014)
-# AnalisaDados.calcular_mediana(dados_2010_2014)
-
-# media_registro_climatico_2010_2018.to_csv('dados_por_ano/registros_climaticos_desvio_padrao_2010_2018.csv', index=False, decimal=',', sep=';')

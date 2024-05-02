@@ -9,6 +9,7 @@ from scripts.utils.monta_dados import MontaDados
 dados_2013_2015 = MontaDados.via_arquivos_csv_clima(caminho_raiz="C:\\Users\\carlo\\Downloads\\desafio-dados-catha\\arquivos_entrada\\registros_climaticos\\2013_2015")
 FormataDados.renomear_colunas_dados_2010_2018(dados_2013_2015)
 FormataDados.definir_data_para_ano_mes(dados_2013_2015)
+FormataDados.substituir_valores(dados_2013_2015)
 
 GeradorArquivo.gerar_csv_periodo(
     AnalisaDados.calcular_media(dados_2013_2015),
@@ -21,6 +22,19 @@ GeradorArquivo.gerar_csv_periodo(
     TipoArquivoPeriodo.DADOS_2013_2015_CSV,
     DiretorioArquivoPeriodo.DESVIO_PADRAO
 )
+
+GeradorArquivo.gerar_csv_periodo(
+    AnalisaDados.calcular_mediana(dados_2013_2015),
+    TipoArquivoPeriodo.DADOS_2013_2015_CSV,
+    DiretorioArquivoPeriodo.MEDIANA
+)
+
+GeradorArquivo.gerar_csv_periodo(
+    AnalisaDados.calcular_variancia(dados_2013_2015),
+    TipoArquivoPeriodo.DADOS_2013_2015_CSV,
+    DiretorioArquivoPeriodo.VARIANCIA
+)
+
 
 del dados_2013_2015
 # AnalisaDados.calcular_desvio_padrao(dados_2010_2014)
