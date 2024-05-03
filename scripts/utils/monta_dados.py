@@ -4,7 +4,7 @@ import os
 import pandas as pandas
 from unidecode import unidecode
 
-from scripts.utils.manipula_arquivo import DiretorioArquivoPeriodo, DiretorioLerArquivo
+from scripts.utils.manipula_arquivo import DiretorioArquivoPeriodo, DiretorioLerArquivo, DiretorioGeraArquivo
 from scripts.utils.nome_colunas import RegistroClimatico, RegistroAcidente
 
 
@@ -58,7 +58,7 @@ class MontaDados:
     def via_arquivos_csv_clima(caminho_raiz: DiretorioLerArquivo | str,
                                separador=SEPARADOR, pular_linhas=PULAR_LINHAS,
                                codificacao=CODIFICACAO):
-        arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz}", "**/*.csv"))
+        arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "**/*.csv"))
 
         conjunto_dados = [_processar_csv_clima(arquivo, separador, pular_linhas, codificacao) for arquivo in
                           arquivos_csv]
@@ -84,3 +84,14 @@ class MontaDados:
     @staticmethod
     def via_arquivo_excel_acidentes(caminho_raiz: DiretorioLerArquivo, colunas_para_ler: []):
         return _processar_excel_acidentes(f"{caminho_raiz.value}", colunas_para_ler)
+
+    @staticmethod
+    def merge_analise_estatistica_clima():
+        caminho = DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP.value
+        merge_colunas_base = [RegistroClimatico.COLUNA_DATA.value, RegistroClimatico.COLUNA_ESTADO.value]
+        arquivos_csv = glob.glob(os.path.join(f"{caminho}", "*.csv"))
+        dados = [_processar_csv_gerado(arquivo) for arquivo in arquivos_csv]
+        merge_analise_estatistica = pandas.merge(dados[0], dados[1], on=merge_colunas_base)
+        merge_analise_estatistica = pandas.merge(merge_analise_estatistica, dados[2], on=merge_colunas_base)
+        merge_analise_estatistica = pandas.merge(merge_analise_estatistica, dados[3], on=merge_colunas_base)
+        return merge_analise_estatistica

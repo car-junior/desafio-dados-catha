@@ -3,18 +3,19 @@ from enum import Enum
 
 from pandas import DataFrame
 
-DADOS_POR_PERIODO = 'dados_por_periodo'
-DIRETORIO_RAIZ_PROJETO = os.path.dirname(os.path.dirname(os.getcwd()))
-DIRETORIO_REGISTRO_CLIMATICOS = "arquivos_entrada\\registros_climaticos"
-DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES = "arquivos_entrada\\registros_acidentes\\base_de_acidentes.xlsx"
+from configuracao import DIRETORIO_RAIZ_PROJETO
+
+CLIMAS_DADOS_POR_PERIODO = f"{DIRETORIO_RAIZ_PROJETO}\\scripts\\analise_estatistica\\arquivos_temp"
+DIRETORIO_REGISTRO_CLIMATICOS = f"{DIRETORIO_RAIZ_PROJETO}\\arquivos_entrada\\registros_climaticos"
+DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES = f"{DIRETORIO_RAIZ_PROJETO}\\arquivos_entrada\\registros_acidentes\\base_de_acidentes.xlsx"
 
 
 class DiretorioLerArquivo(Enum):
-    REGISTRO_ACIDENTES_2010_2021 = f"{DIRETORIO_RAIZ_PROJETO}\\{DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES}"
-    REGISTRO_CLIMATICOS_2010_2012 = f"{DIRETORIO_RAIZ_PROJETO}\\{DIRETORIO_REGISTRO_CLIMATICOS}\\2010_2012"
-    REGISTRO_CLIMATICOS_2013_2015 = f"{DIRETORIO_RAIZ_PROJETO}\\{DIRETORIO_REGISTRO_CLIMATICOS}\\2013_2015"
-    REGISTRO_CLIMATICOS_2016_2018 = f"{DIRETORIO_RAIZ_PROJETO}\\{DIRETORIO_REGISTRO_CLIMATICOS}\\2016_2018"
-    REGISTRO_CLIMATICOS_2019_2021 = f"{DIRETORIO_RAIZ_PROJETO}\\{DIRETORIO_REGISTRO_CLIMATICOS}\\2019_2021"
+    REGISTRO_ACIDENTES_2010_2021 = DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES
+    REGISTRO_CLIMATICOS_2010_2012 = f"{DIRETORIO_REGISTRO_CLIMATICOS}\\2010_2012"
+    REGISTRO_CLIMATICOS_2013_2015 = f"{DIRETORIO_REGISTRO_CLIMATICOS}\\2013_2015"
+    REGISTRO_CLIMATICOS_2016_2018 = f"{DIRETORIO_REGISTRO_CLIMATICOS}\\2016_2018"
+    REGISTRO_CLIMATICOS_2019_2021 = f"{DIRETORIO_REGISTRO_CLIMATICOS}\\2019_2021"
 
 
 class TipoArquivo(Enum):
@@ -22,11 +23,14 @@ class TipoArquivo(Enum):
     DESVIO_PADRAO_DADOS_2010_2021_CSV = 'desvio_padrao_dados_2010_2021.csv'
     MEDIANA_DADOS_2010_2021_CSV = 'mediana_dados_2010_2021.csv'
     VARIANCIA_DADOS_2010_2021_CSV = 'variancia_dados_2010_2021.csv'
+    ANALISE_ESTATISTICA_DADOS_CLIMA_2010_2021_CSV = 'analise_estatistica_dados_clima_2010_2021.csv'
     CONTAGEM_REGISTROS_ACIDENTES_2010_2021_CSV = 'contagem_registros_acidentes_2010_2021.csv'
 
 
 class DiretorioGeraArquivo(Enum):
-    DADOS_COMPLETOS = f"{DIRETORIO_RAIZ_PROJETO}\\dados_completos"
+    ANALISE_ESTATISTICA_ARQUIVOS = f"{DIRETORIO_RAIZ_PROJETO}\\scripts\\analise_estatistica\\arquivos"
+    ANALISE_ESTATISTICA_ARQUIVOS_TEMP = f"{DIRETORIO_RAIZ_PROJETO}\\scripts\\analise_estatistica\\arquivos_temp"
+    ARQUIVOS_CLIMA_PERIODO_TEMP = f"{DIRETORIO_RAIZ_PROJETO}\\scripts\\analise_estatistica\\arquivos_clima_periodo_temp"
 
 
 class TipoArquivoPeriodo(Enum):
@@ -37,10 +41,10 @@ class TipoArquivoPeriodo(Enum):
 
 
 class DiretorioArquivoPeriodo(Enum):
-    MEDIA = f"{DIRETORIO_RAIZ_PROJETO}\\{DADOS_POR_PERIODO}\\media"
-    MEDIANA = f"{DIRETORIO_RAIZ_PROJETO}\\{DADOS_POR_PERIODO}\\mediana"
-    DESVIO_PADRAO = f"{DIRETORIO_RAIZ_PROJETO}\\{DADOS_POR_PERIODO}\\desvio_padrao"
-    VARIANCIA = f"{DIRETORIO_RAIZ_PROJETO}\\{DADOS_POR_PERIODO}\\variancia"
+    MEDIA = f"{CLIMAS_DADOS_POR_PERIODO}\\media"
+    MEDIANA = f"{CLIMAS_DADOS_POR_PERIODO}\\mediana"
+    VARIANCIA = f"{CLIMAS_DADOS_POR_PERIODO}\\variancia"
+    DESVIO_PADRAO = f"{CLIMAS_DADOS_POR_PERIODO}\\desvio_padrao"
 
 
 def gerar_diretorio(diretorio: DiretorioArquivoPeriodo | DiretorioGeraArquivo):

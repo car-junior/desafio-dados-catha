@@ -8,10 +8,11 @@ dados_acidentes_2010_2021 = MontaDados.via_arquivo_excel_acidentes(
     colunas_para_ler=RegistroAcidente.colunas_para_ler()
 )
 
+# Mudar o DiretorioGeraArquivo.DADOS_COMPLETOS nao vai mais ser dados completos
 GeradorArquivo.gerar_csv(
     AnalisaDados.calcular_quantidade_acidentes(dados_acidentes_2010_2021),
     TipoArquivo.CONTAGEM_REGISTROS_ACIDENTES_2010_2021_CSV,
-    DiretorioGeraArquivo.DADOS_COMPLETOS
+    DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP
 )
 
 
