@@ -1,5 +1,5 @@
 from scripts.utils.analisa_dados import AnalisaDados
-from scripts.utils.manipula_arquivo import DiretorioArquivoEntrada, GeradorArquivo, ClimaAnaliseEstatisticaArquivo, DiretorioGeraArquivo
+from scripts.utils.manipula_arquivo import DiretorioArquivoEntrada, GeradorArquivo, AnaliseEstatisticaArquivo, DiretorioGeraArquivo
 from scripts.utils.monta_dados import MontaDados
 from scripts.utils.nome_colunas import RegistroAcidente
 

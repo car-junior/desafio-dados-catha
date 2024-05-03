@@ -1,4 +1,4 @@
-from scripts.utils.manipula_arquivo import ClimaAnaliseEstatisticaArquivo
+from scripts.utils.manipula_arquivo import AnaliseEstatisticaArquivo
 from scripts.utils.manipula_arquivo import GeradorArquivo, DiretorioGeraArquivo, ClimaDiretorioPeriodo, \
     CLIMAS_DADOS_POR_PERIODO
 from scripts.utils.monta_dados import MontaDados
@@ -24,25 +24,25 @@ exec(open("analise_climas_2019_2021.py").read())
 
 media_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.MEDIA)
 GeradorArquivo.gerar_csv(media_dados_2010_2021,
-                         ClimaAnaliseEstatisticaArquivo.MEDIA_CLIMAS_2010_2021_CSV,
+                         AnaliseEstatisticaArquivo.MEDIA_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del media_dados_2010_2021
 
 desvio_padrao_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.DESVIO_PADRAO)
 GeradorArquivo.gerar_csv(desvio_padrao_dados_2010_2021,
-                         ClimaAnaliseEstatisticaArquivo.DESVIO_PADRAO_CLIMAS_2010_2021_CSV,
+                         AnaliseEstatisticaArquivo.DESVIO_PADRAO_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del desvio_padrao_dados_2010_2021
 
 mediana_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.MEDIANA)
 GeradorArquivo.gerar_csv(mediana_dados_2010_2021,
-                         ClimaAnaliseEstatisticaArquivo.MEDIANA_CLIMAS_2010_2021_CSV,
+                         AnaliseEstatisticaArquivo.MEDIANA_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del mediana_dados_2010_2021
 
 variancia_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.VARIANCIA)
 GeradorArquivo.gerar_csv(variancia_dados_2010_2021,
-                         ClimaAnaliseEstatisticaArquivo.VARIANCIA_CLIMAS_2010_2021_CSV,
+                         AnaliseEstatisticaArquivo.VARIANCIA_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del variancia_dados_2010_2021
 
@@ -57,7 +57,7 @@ print("Gerando analise estatistica dos dados analisados(media, mediana, desviao 
 merge_analise_estatistica = MontaDados.merge_clima_analise_estatistica()
 GeradorArquivo.gerar_csv(
     merge_analise_estatistica,
-    ClimaAnaliseEstatisticaArquivo.ANALISE_ESTATISTICA_CLIMAS_2010_2021_CSV,
+    AnaliseEstatisticaArquivo.ANALISE_ESTATISTICA_CLIMAS_2010_2021_CSV,
     DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS
 )
 

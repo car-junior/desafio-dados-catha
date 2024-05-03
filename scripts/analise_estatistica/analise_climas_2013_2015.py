@@ -13,30 +13,26 @@ FormataDados.substituir_valores(dados_2013_2015)
 
 GeradorArquivo.gerar_csv_periodo(
     AnalisaDados.calcular_media(dados_2013_2015),
-    ClimaArquivoPeriodo.CLIMAS_2013_2015_CSV,
+    ClimaArquivoPeriodo.MEDIA_2013_2015_CSV,
     ClimaDiretorioPeriodo.MEDIA
 )
 
 GeradorArquivo.gerar_csv_periodo(
     AnalisaDados.calcular_desvio_padrao(dados_2013_2015),
-    ClimaArquivoPeriodo.CLIMAS_2013_2015_CSV,
+    ClimaArquivoPeriodo.DESVIO_PADRAO_CLIMAS_2013_2015_CSV,
     ClimaDiretorioPeriodo.DESVIO_PADRAO
 )
 
 GeradorArquivo.gerar_csv_periodo(
     AnalisaDados.calcular_mediana(dados_2013_2015),
-    ClimaArquivoPeriodo.CLIMAS_2013_2015_CSV,
+    ClimaArquivoPeriodo.MEDIANA_CLIMAS_2013_2015_CSV,
     ClimaDiretorioPeriodo.MEDIANA
 )
 
 GeradorArquivo.gerar_csv_periodo(
     AnalisaDados.calcular_variancia(dados_2013_2015),
-    ClimaArquivoPeriodo.CLIMAS_2013_2015_CSV,
+    ClimaArquivoPeriodo.VARIANCIA_CLIMAS_2013_2015_CSV,
     ClimaDiretorioPeriodo.VARIANCIA
 )
 
 del dados_2013_2015
-# AnalisaDados.calcular_desvio_padrao(dados_2010_2014)
-# AnalisaDados.calcular_mediana(dados_2010_2014)
-
-# media_registro_climatico_2010_2018.to_csv('dados_por_ano/registros_climaticos_desvio_padrao_2010_2018.csv', index=False, decimal=',', sep=';')
