@@ -1,4 +1,5 @@
 import os
+import shutil
 from enum import Enum
 
 from pandas import DataFrame
@@ -61,3 +62,7 @@ class GeradorArquivo:
     def gerar_csv(dados: DataFrame, tipo_arquivo: ClimaAnaliseEstatisticaArquivo, diretorio: DiretorioGeraArquivo):
         gerar_diretorio(diretorio)
         dados.to_csv(f"{diretorio.value}\\{tipo_arquivo.value}", index=False, decimal=',', sep=';', encoding='utf-8')
+
+    @staticmethod
+    def remover_diretorio_arquivos(diretorio):
+        shutil.rmtree(diretorio)

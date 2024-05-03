@@ -1,8 +1,6 @@
-import shutil
-
+from scripts.utils.manipula_arquivo import ClimaAnaliseEstatisticaArquivo
 from scripts.utils.manipula_arquivo import GeradorArquivo, DiretorioGeraArquivo, ClimaDiretorioPeriodo, \
     CLIMAS_DADOS_POR_PERIODO
-from scripts.utils.manipula_arquivo import ClimaAnaliseEstatisticaArquivo
 from scripts.utils.monta_dados import MontaDados
 
 # Executa analise estatistica gerando media, mediana, desvio padrao e variancia para os dados de clima por periodo
@@ -49,14 +47,10 @@ GeradorArquivo.gerar_csv(variancia_dados_2010_2021,
 del variancia_dados_2010_2021
 
 # Deleta os arquivos que foram criados para guardar temporiamente os dados de climas por periodo
-shutil.rmtree(CLIMAS_DADOS_POR_PERIODO)
+GeradorArquivo.remover_diretorio_arquivos(CLIMAS_DADOS_POR_PERIODO)
 
 # Nesta etapa é feito um merge de todas analises estatisticas(media, mediana, desvio padrao e variancia de 2010 a 2021)
 # em apenas um unico arquivo csv de 2010 a 2021
-
-# TODO:
-# Deletar os arquivos_temp temporarios por periodos
-# Deletar os temporarios por analise estatistica de 2010 a 2021
 
 print("Gerando analise estatistica dos dados analisados(media, mediana, desviao padrao e variancia 2010 a 2021)")
 # Faz juncao das analises estatisticas em um unico dataframe
@@ -68,4 +62,4 @@ GeradorArquivo.gerar_csv(
 )
 
 # Deleta arquivos temporarios de analise estatisticas do clima
-shutil.rmtree(f"{DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP.value}")
+GeradorArquivo.remover_diretorio_arquivos(DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP.value)
