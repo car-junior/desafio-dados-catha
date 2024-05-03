@@ -4,7 +4,7 @@ import os
 import pandas as pandas
 from unidecode import unidecode
 
-from scripts.utils.manipula_arquivo import DiretorioArquivoPeriodo, DiretorioLerArquivo, DiretorioGeraArquivo
+from scripts.utils.manipula_arquivo import ClimaDiretorioPeriodo, DiretorioArquivoEntrada, DiretorioGeraArquivo
 from scripts.utils.nome_colunas import RegistroClimatico, RegistroAcidente
 
 
@@ -55,7 +55,7 @@ class MontaDados:
     CODIFICACAO = 'cp1252'
 
     @staticmethod
-    def via_arquivos_csv_clima(caminho_raiz: DiretorioLerArquivo | str,
+    def via_arquivos_csv_clima(caminho_raiz: DiretorioArquivoEntrada | str,
                                separador=SEPARADOR, pular_linhas=PULAR_LINHAS,
                                codificacao=CODIFICACAO):
         arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "**/*.csv"))
@@ -71,7 +71,7 @@ class MontaDados:
             print(f"Não foi encontrado nenhum arquivo csv em {caminho_raiz.value}")
 
     @staticmethod
-    def via_arquivos_csv_gerados(caminho_raiz: DiretorioArquivoPeriodo):
+    def via_arquivos_csv_gerados(caminho_raiz: ClimaDiretorioPeriodo):
         arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "*.csv"))
 
         conjunto_dados = [_processar_csv_gerado(arquivo) for arquivo in arquivos_csv]
@@ -82,11 +82,11 @@ class MontaDados:
             print(f"Não foi encontrado nenhum arquivo csv em {caminho_raiz.value}")
 
     @staticmethod
-    def via_arquivo_excel_acidentes(caminho_raiz: DiretorioLerArquivo, colunas_para_ler: []):
+    def via_arquivo_excel_acidentes(caminho_raiz: DiretorioArquivoEntrada, colunas_para_ler: []):
         return _processar_excel_acidentes(f"{caminho_raiz.value}", colunas_para_ler)
 
     @staticmethod
-    def merge_analise_estatistica_clima():
+    def merge_clima_analise_estatistica():
         caminho = DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP.value
         merge_colunas_base = [RegistroClimatico.COLUNA_DATA.value, RegistroClimatico.COLUNA_ESTADO.value]
         arquivos_csv = glob.glob(os.path.join(f"{caminho}", "*.csv"))
