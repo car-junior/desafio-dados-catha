@@ -20,6 +20,11 @@ class FormataDados:
         dados[RegistroClimatico.COLUNA_DATA.value] = dados[RegistroClimatico.COLUNA_DATA.value].dt.to_period('M')
 
     @staticmethod
+    def definir_coluna_para_data(dados: DataFrame):
+        # Transforma coluna em tipo datetime
+        dados[RegistroClimatico.COLUNA_DATA.value] = pandas.to_datetime(dados[RegistroClimatico.COLUNA_DATA.value])
+
+    @staticmethod
     def renomear_colunas_dados_2010_2018(dados_2010_2018: DataFrame):
         # Renomeia coluna DATA (YYYY-MM-DD) para Data
         dados_2010_2018.rename(columns={"DATA (YYYY-MM-DD)": f"{RegistroClimatico.COLUNA_DATA.value}"}, inplace=True)
@@ -34,5 +39,4 @@ class FormataDados:
 
     @staticmethod
     def adicionar_prefixo_em_colunas(dados: DataFrame, prefixo: str, colunas: []):
-        # Renomeia coluna HORA (UTC) para Hora
         dados.rename(columns={col: f"{prefixo} - {col}" for col in colunas}, inplace=True)

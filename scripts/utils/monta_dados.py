@@ -4,7 +4,8 @@ import os
 import pandas as pandas
 from unidecode import unidecode
 
-from scripts.utils.manipula_arquivo import ClimaDiretorioPeriodo, DiretorioArquivoEntrada, DiretorioGeraArquivo
+from scripts.utils.manipula_arquivo import ClimaDiretorioPeriodo, DiretorioArquivoEntrada, DiretorioGeraArquivo, \
+    AnaliseCorrelacaoDiretorio
 from scripts.utils.nome_colunas import RegistroClimatico, RegistroAcidente
 
 
@@ -55,10 +56,9 @@ class MontaDados:
     CODIFICACAO = 'cp1252'
 
     @staticmethod
-    def via_arquivos_csv_clima(caminho_raiz: DiretorioArquivoEntrada | str,
-                               separador=SEPARADOR, pular_linhas=PULAR_LINHAS,
-                               codificacao=CODIFICACAO):
-        arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "**/*.csv"))
+    def via_arquivos_csv_clima(diretorio: DiretorioArquivoEntrada | str,
+                               separador=SEPARADOR, pular_linhas=PULAR_LINHAS, codificacao=CODIFICACAO):
+        arquivos_csv = glob.glob(os.path.join(f"{diretorio.value}", "**/*.csv"))
 
         conjunto_dados = [_processar_csv_clima(arquivo, separador, pular_linhas, codificacao) for arquivo in
                           arquivos_csv]
@@ -68,22 +68,22 @@ class MontaDados:
             conjunto_dados = conjunto_dados.loc[:, ~conjunto_dados.columns.str.contains('^UNNAMED')]
             return conjunto_dados
         else:
-            print(f"Não foi encontrado nenhum arquivo csv em {caminho_raiz.value}")
+            print(f"Não foi encontrado nenhum arquivo csv em {diretorio.value}")
 
     @staticmethod
-    def via_arquivos_csv_gerados(caminho_raiz: ClimaDiretorioPeriodo):
-        arquivos_csv = glob.glob(os.path.join(f"{caminho_raiz.value}", "*.csv"))
+    def via_arquivos_csv_gerados(diretorio: ClimaDiretorioPeriodo | AnaliseCorrelacaoDiretorio):
+        arquivos_csv = glob.glob(os.path.join(f"{diretorio.value}", "*.csv"))
 
         conjunto_dados = [_processar_csv_gerado(arquivo) for arquivo in arquivos_csv]
 
         if conjunto_dados:
             return pandas.concat(conjunto_dados, ignore_index=False)
         else:
-            print(f"Não foi encontrado nenhum arquivo csv em {caminho_raiz.value}")
+            print(f"Não foi encontrado nenhum arquivo csv em {diretorio.value}")
 
     @staticmethod
-    def via_arquivo_excel_acidentes(caminho_raiz: DiretorioArquivoEntrada, colunas_para_ler: []):
-        return _processar_excel_acidentes(f"{caminho_raiz.value}", colunas_para_ler)
+    def via_arquivo_excel_acidentes(diretorio: DiretorioArquivoEntrada, colunas_para_ler: []):
+        return _processar_excel_acidentes(f"{diretorio.value}", colunas_para_ler)
 
     @staticmethod
     def merge_clima_analise_estatistica():

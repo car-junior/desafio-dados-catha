@@ -7,8 +7,11 @@ from pandas import DataFrame
 from configuracao import DIRETORIO_RAIZ_PROJETO
 
 DIRETORIO_REGISTRO_CLIMATICOS_ENTRADA = f"{DIRETORIO_RAIZ_PROJETO}\\arquivos_entrada\\registros_climaticos"
-CLIMAS_DADOS_POR_PERIODO = f"{DIRETORIO_RAIZ_PROJETO}\\scripts\\analise_estatistica\\arquivos_temp\\periodo"
-DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES = f"{DIRETORIO_RAIZ_PROJETO}\\arquivos_entrada\\registros_acidentes\\base_de_acidentes.xlsx"
+ANALISE_ESTATISTICA_CLIMAS_DADOS_POR_PERIODO = f"{DIRETORIO_RAIZ_PROJETO}\\scripts\\analise_estatistica\\arquivos_temp\\periodo"
+
+
+class AnaliseCorrelacaoDiretorio(Enum):
+    MEDIAS_POR_PERIODO = f"{DIRETORIO_RAIZ_PROJETO}\\scripts\\analise_correlacao\\arquivos_temp\\media"
 
 
 class AnaliseCorrelacaoArquivo(Enum):
@@ -18,11 +21,11 @@ class AnaliseCorrelacaoArquivo(Enum):
 
 
 class DiretorioArquivoEntrada(Enum):
-    REGISTRO_ACIDENTES_2010_2021 = DIRETORIO_ARQUIVO_REGISTRO_ACIDENTES
     REGISTRO_CLIMATICOS_2010_2012 = f"{DIRETORIO_REGISTRO_CLIMATICOS_ENTRADA}\\2010_2012"
     REGISTRO_CLIMATICOS_2013_2015 = f"{DIRETORIO_REGISTRO_CLIMATICOS_ENTRADA}\\2013_2015"
     REGISTRO_CLIMATICOS_2016_2018 = f"{DIRETORIO_REGISTRO_CLIMATICOS_ENTRADA}\\2016_2018"
     REGISTRO_CLIMATICOS_2019_2021 = f"{DIRETORIO_REGISTRO_CLIMATICOS_ENTRADA}\\2019_2021"
+    REGISTRO_ACIDENTES_2013_2022 = f"{DIRETORIO_RAIZ_PROJETO}\\arquivos_entrada\\registros_acidentes\\base_de_acidentes.xlsx"
 
 
 class AnaliseEstatisticaArquivo(Enum):
@@ -62,10 +65,10 @@ class ClimaArquivoPeriodo(Enum):
 
 
 class ClimaDiretorioPeriodo(Enum):
-    MEDIA = f"{CLIMAS_DADOS_POR_PERIODO}\\media"
-    MEDIANA = f"{CLIMAS_DADOS_POR_PERIODO}\\mediana"
-    VARIANCIA = f"{CLIMAS_DADOS_POR_PERIODO}\\variancia"
-    DESVIO_PADRAO = f"{CLIMAS_DADOS_POR_PERIODO}\\desvio_padrao"
+    MEDIA = f"{ANALISE_ESTATISTICA_CLIMAS_DADOS_POR_PERIODO}\\media"
+    MEDIANA = f"{ANALISE_ESTATISTICA_CLIMAS_DADOS_POR_PERIODO}\\mediana"
+    VARIANCIA = f"{ANALISE_ESTATISTICA_CLIMAS_DADOS_POR_PERIODO}\\variancia"
+    DESVIO_PADRAO = f"{ANALISE_ESTATISTICA_CLIMAS_DADOS_POR_PERIODO}\\desvio_padrao"
 
 
 def gerar_diretorio(diretorio: ClimaDiretorioPeriodo | DiretorioGeraArquivo):
@@ -76,7 +79,7 @@ class GeradorArquivo:
 
     @staticmethod
     def gerar_csv_periodo(dados: DataFrame, tipo_arquivo: ClimaArquivoPeriodo | AnaliseCorrelacaoArquivo,
-                          diretorio: ClimaDiretorioPeriodo):
+                          diretorio: ClimaDiretorioPeriodo | AnaliseCorrelacaoDiretorio):
         gerar_diretorio(diretorio)
         dados.to_csv(f"{diretorio.value}\\{tipo_arquivo.value}", index=False, decimal=',', sep=';', encoding='utf-8')
 

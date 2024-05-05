@@ -1,6 +1,6 @@
 from scripts.utils.manipula_arquivo import AnaliseEstatisticaArquivo
 from scripts.utils.manipula_arquivo import GeradorArquivo, DiretorioGeraArquivo, ClimaDiretorioPeriodo, \
-    CLIMAS_DADOS_POR_PERIODO
+    ANALISE_ESTATISTICA_CLIMAS_DADOS_POR_PERIODO
 from scripts.utils.monta_dados import MontaDados
 
 # Executa analise estatistica gerando media, mediana, desvio padrao e variancia para os dados de clima por periodo
@@ -22,32 +22,32 @@ exec(open("analise_climas_2019_2021.py").read())
 # Nesta etapa é feito a junção da analise estatistica por periodo em apenas um intervalo de 2010 a 2021
 # para media, mediana, desvio padrao e variancia
 
-media_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.MEDIA)
+media_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(diretorio=ClimaDiretorioPeriodo.MEDIA)
 GeradorArquivo.gerar_csv(media_dados_2010_2021,
                          AnaliseEstatisticaArquivo.MEDIA_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del media_dados_2010_2021
 
-desvio_padrao_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.DESVIO_PADRAO)
+desvio_padrao_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(diretorio=ClimaDiretorioPeriodo.DESVIO_PADRAO)
 GeradorArquivo.gerar_csv(desvio_padrao_dados_2010_2021,
                          AnaliseEstatisticaArquivo.DESVIO_PADRAO_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del desvio_padrao_dados_2010_2021
 
-mediana_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.MEDIANA)
+mediana_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(diretorio=ClimaDiretorioPeriodo.MEDIANA)
 GeradorArquivo.gerar_csv(mediana_dados_2010_2021,
                          AnaliseEstatisticaArquivo.MEDIANA_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del mediana_dados_2010_2021
 
-variancia_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(caminho_raiz=ClimaDiretorioPeriodo.VARIANCIA)
+variancia_dados_2010_2021 = MontaDados.via_arquivos_csv_gerados(diretorio=ClimaDiretorioPeriodo.VARIANCIA)
 GeradorArquivo.gerar_csv(variancia_dados_2010_2021,
                          AnaliseEstatisticaArquivo.VARIANCIA_CLIMAS_2010_2021_CSV,
                          DiretorioGeraArquivo.ANALISE_ESTATISTICA_ARQUIVOS_TEMP)
 del variancia_dados_2010_2021
 
 # Deleta os arquivos que foram criados para guardar temporiamente os dados de climas por periodo
-GeradorArquivo.remover_diretorio_arquivos(CLIMAS_DADOS_POR_PERIODO)
+GeradorArquivo.remover_diretorio_arquivos(ANALISE_ESTATISTICA_CLIMAS_DADOS_POR_PERIODO)
 
 # Nesta etapa é feito um merge de todas analises estatisticas(media, mediana, desvio padrao e variancia de 2010 a 2021)
 # em apenas um unico arquivo csv de 2010 a 2021
