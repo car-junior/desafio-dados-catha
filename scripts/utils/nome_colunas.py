@@ -17,7 +17,6 @@ class RegistroClimatico(Enum):
 
 
 class RegistroAcidente(Enum):
-    # COLUNA_OCORRENCIA_HORA = "ocorrencia_hora" #TODO: Usar coluna hora como groupby tambem ? para ser mais preciso
     COLUNA_OCORRENCIA_CLASSIFICACAO = "ocorrencia_classificacao"
     COLUNA_ESTADO = "ocorrencia_uf"
     COLUNA_OCORRENCIA_DIA = "ocorrencia_dia"
@@ -49,6 +48,8 @@ class RegistroAcidente(Enum):
     COLUNA_FATOR_CONDICIONANTE = "fator_condicionante"
     COLUNA_FATOR_AREA = "fator_area"
     COLUNA_OCORRENCIA_HORA = "ocorrencia_hora"
+    COLUNA_OCORRENCIA_LONGITUDE = "ocorrencia_longitude"
+    COLUNA_OCORRENCIA_LATITUDE = "ocorrencia_latitude"
 
     @staticmethod
     def colunas_para_ler():
