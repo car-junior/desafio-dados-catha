@@ -7,8 +7,13 @@ class RegistroClimatico(Enum):
     COLUNA_ESTADO = "ESTADO"
 
     @staticmethod
-    def agrupa_por():
+    def agrupa_por_data_estado():
         return [RegistroClimatico.COLUNA_DATA.value, RegistroClimatico.COLUNA_ESTADO.value]
+
+    @staticmethod
+    def agrupa_por_data_hora_estado():
+        return [RegistroClimatico.COLUNA_DATA.value, RegistroClimatico.COLUNA_HORA.value,
+                RegistroClimatico.COLUNA_ESTADO.value]
 
 
 class RegistroAcidente(Enum):
@@ -43,6 +48,7 @@ class RegistroAcidente(Enum):
     COLUNA_FATOR_ASPECTO = "fator_aspecto"
     COLUNA_FATOR_CONDICIONANTE = "fator_condicionante"
     COLUNA_FATOR_AREA = "fator_area"
+    COLUNA_OCORRENCIA_HORA = "ocorrencia_hora"
 
     @staticmethod
     def colunas_para_ler():
@@ -53,9 +59,9 @@ class RegistroAcidente(Enum):
         return [
             RegistroAcidente.COLUNA_ESTADO.value,
             RegistroAcidente.COLUNA_OCORRENCIA_DIA.value,
+            RegistroAcidente.COLUNA_OCORRENCIA_HORA.value,
             RegistroAcidente.COLUNA_AERONAVE_MATRICULA.value,
             RegistroAcidente.COLUNA_OCORRENCIA_CLASSIFICACAO.value
-            #     Adicionar hora ?
         ]
 
     @staticmethod
@@ -63,6 +69,6 @@ class RegistroAcidente(Enum):
         return [
             RegistroAcidente.COLUNA_ESTADO.value,
             RegistroAcidente.COLUNA_OCORRENCIA_DIA.value,
+            RegistroAcidente.COLUNA_OCORRENCIA_HORA.value,
             RegistroAcidente.COLUNA_OCORRENCIA_CLASSIFICACAO.value
-            #     Adicionar hora ?
         ]

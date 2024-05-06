@@ -77,7 +77,7 @@ class MontaDados:
         conjunto_dados = [_processar_csv_gerado(arquivo) for arquivo in arquivos_csv]
 
         if conjunto_dados:
-            return pandas.concat(conjunto_dados, ignore_index=False)
+            return pandas.concat(conjunto_dados, ignore_index=True)
         else:
             print(f"Não foi encontrado nenhum arquivo csv em {diretorio.value}")
 
