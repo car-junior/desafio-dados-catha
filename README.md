@@ -16,6 +16,7 @@ Feito os passos anteriores para executar o projeto siga as instruções mostrada
 O projeto está dividido em três pacotes/módulos:
 * scripts/analise_estatistica
 * scripts/analise_correlacao
+* scripts/analise_acidentes
 
 ####  scripts/analise_estatistica:
 Neste módulo é feito os seguintes calculos estátisticos media, mediana, variância e desvio padrão para os dados climáticos, fizemos isso agrupando por Ano, Mês e Estado.
