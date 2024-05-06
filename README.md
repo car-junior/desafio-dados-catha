@@ -24,7 +24,6 @@ No final geramos um csv com essas estatisticas para os climas de 2010 a 2021.
 Como executar ?
 - Acesse o arquivo main em `scripts/analise_estatistica`, execute o mesmo após finalizar execução será gerado um arquivo csv `arquivos/analise_estatistica_climas_2010_2021.csv` que contem media, mediana, variância e desvio padrão dos registros climaticos
 
-
 ####  scripts/analise_correlacao:
 Neste módulo/pacote é feito o calculo de correlação com base na media dos registros climaticos agrupado por ano/mes/dia, hora e estado,
 onde fazemos um merge com um dataframe que contem as informações de quantidades de acidentes, onde fizemos os calculos, por fim plotamos um graficos
@@ -32,3 +31,11 @@ com os valores das correlações entre as variáveis.
 
 Como executar ?
 - Acesse o arquivo main em `scripts/analise_correlacao`, execute o mesmo após finalizar será plotado um grafico com as informações
+
+####  scripts/analise_acidentes:
+analisa e visualiza dados de acidentes aéreos, investigando tendências ao longo do tempo, tipos e causas comuns de acidentes, aeronaves mais 
+envolvidas e distribuição geográfica dos incidentes. Utiliza Pandas, Matplotlib e Seaborn para plotar gráficos de linha, barras e mapas de calor, 
+fornecendo insights sobre padrões e ocorrências de acidentes
+
+Como executar ?
+- Acesse o arquivo main em `scripts/analise_acidentes`, execute o mesmo após finalizar será plotados alguns graficos com essas analises de acidentes
